@@ -283,6 +283,19 @@ class GradioUI:
                     [upload_file, file_uploads_log],
                     [upload_status, file_uploads_log],
                 )
+            gr.Examples(
+                examples=[
+                    "What is the cheapest month to travel to Tokyo, Japan?",
+                    "Find me the cheapest flight from Denver, Colorado to Tokyo, Japan in October.",
+                    "What is the typical weather in Tokyo during April?",
+                    "What are the top must-visit attractions in Tokyo for first-time travelers?",
+                    "How can I get from Narita Airport to Shinjuku using public transportation?",
+                    "Which airline offers direct flights to Tokyo, Japan?"
+                ],
+                inputs=text_input,
+                label="Example Questions"
+            )
+
             text_input = gr.Textbox(lines=1, label="Chat Message")
             text_input.submit(
                 self.log_user_message,
