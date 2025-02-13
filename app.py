@@ -40,11 +40,18 @@ visit_webpage = VisitWebpageTool()
 web_search = DuckDuckGoSearchTool()
 final_answer = FinalAnswerTool()
 
-model = HfApiModel(
-max_tokens=2096,
-temperature=0.5,
-model_id='Qwen/Qwen2.5-Coder-32B-Instruct',# it is possible that this model may be overloaded
-custom_role_conversions=None,
+# model = HfApiModel(
+# max_tokens=2096,
+# temperature=0.5,
+# model_id='Qwen/Qwen2.5-Coder-32B-Instruct',# it is possible that this model may be overloaded
+# custom_role_conversions=None,
+# )
+
+model = LiteLLMModel(
+  model_id="gemini/gemini-2.0-flash-exp",
+  max_tokens=2096,
+  temperature=0.6,
+  api_key=os.getenv("GEMINI_API_KEY")
 )
 
 
