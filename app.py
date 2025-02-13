@@ -4,6 +4,8 @@ import requests
 import pytz
 import yaml
 from tools.final_answer import FinalAnswerTool
+from tools.visit_webpage import VisitWebpageTool
+from tools.web_search import DuckDuckGoSearchTool
 
 from Gradio_UI import GradioUI
 
@@ -34,7 +36,10 @@ def get_current_time_in_timezone(timezone: str) -> str:
         return f"Error fetching time for timezone '{timezone}': {str(e)}"
 
 
+visit_webpage = VisitWebpageTool()
+web_search = DuckDuckGoSearchTool()
 final_answer = FinalAnswerTool()
+
 model = HfApiModel(
 max_tokens=2096,
 temperature=0.5,
@@ -51,7 +56,7 @@ with open("prompts.yaml", 'r') as stream:
     
 agent = CodeAgent(
     model=model,
-    tools=[final_answer, my_cutom_tool, get_current_time_in_timezone], ## add your tools here (don't remove final answer)
+    tools=[final_answer, visit_webpage, web_search], ## add your tools here (don't remove final answer)
     max_steps=6,
     verbosity_level=1,
     grammar=None,
@@ -62,4 +67,8 @@ agent = CodeAgent(
 )
 
 
-GradioUI(agent).launch()
+if __name__ == "__main__":
+  try:
+    GradioUI(agent).launch()
+  except Exception as e:
+    print(f"Error launching GradioUI: {str(e)}")
