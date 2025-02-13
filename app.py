@@ -3,6 +3,7 @@ import datetime
 import requests
 import pytz
 import yaml
+import os
 from tools.final_answer import FinalAnswerTool
 from tools.visit_webpage import VisitWebpageTool
 from tools.web_search import DuckDuckGoSearchTool
