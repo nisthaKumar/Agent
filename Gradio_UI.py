@@ -287,12 +287,10 @@ class GradioUI:
             text_input = gr.Textbox(lines=1, label="Chat Message")
             gr.Examples(
                 examples=[
-                    "What is the cheapest month to travel to Tokyo, Japan?",
-                    "Find me the cheapest flight from Denver, Colorado to Tokyo, Japan in October.",
-                    "What is the typical weather in Tokyo during April?",
-                    "What are the top must-visit attractions in Tokyo for first-time travelers?",
-                    "How can I get from Narita Airport to Shinjuku using public transportation?",
-                    "Which airline offers direct flights to Tokyo, Japan?"
+                    "What is the cheapest month to travel to Bengaluru, India from San Francisco?",
+                    "Find me the cheapest flight from SFO to Blr.",
+                    "What is the current job market in US for data scientists",
+                    "What are the top must-visit attractions in California"
                 ],
                 inputs=text_input,
                 label="Example Questions"
