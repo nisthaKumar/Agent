@@ -77,6 +77,6 @@ agent = CodeAgent(
 
 if __name__ == "__main__":
   try:
-    GradioUI(agent).launch()
+    GradioUI(agent, documents).launch()
   except Exception as e:
     print(f"Error launching GradioUI: {str(e)}")
