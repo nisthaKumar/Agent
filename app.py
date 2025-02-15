@@ -7,6 +7,7 @@ import os
 from tools.final_answer import FinalAnswerTool
 from tools.visit_webpage import VisitWebpageTool
 from tools.web_search import DuckDuckGoSearchTool
+from tools.code_refactor import CodeRefactorTool
 
 from Gradio_UI import GradioUI
 
@@ -40,6 +41,7 @@ def get_current_time_in_timezone(timezone: str) -> str:
 visit_webpage = VisitWebpageTool()
 web_search = DuckDuckGoSearchTool()
 final_answer = FinalAnswerTool()
+code_refactor = CodeRefactorTool()
 
 # model = HfApiModel(
 # max_tokens=2096,
@@ -48,6 +50,7 @@ final_answer = FinalAnswerTool()
 # custom_role_conversions=None,
 # )
 
+print(os.getenv("GEMINI_API_KEY"))
 model = LiteLLMModel(
   model_id="gemini/gemini-2.0-flash-exp",
   max_tokens=2096,
@@ -64,7 +67,7 @@ with open("prompts.yaml", 'r') as stream:
     
 agent = CodeAgent(
     model=model,
-    tools=[final_answer, visit_webpage, web_search], ## add your tools here (don't remove final answer)
+    tools=[final_answer, visit_webpage, web_search, code_refactor], ## add your tools here (don't remove final answer)
     max_steps=6,
     verbosity_level=1,
     grammar=None,
